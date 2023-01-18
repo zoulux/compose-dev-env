@@ -1,6 +1,6 @@
 FROM nginx:1.21
 
-RUN sudo sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
+RUN sed -i 's/deb.debian.org/mirrors.aliyun.com/g' /etc/apt/sources.list &&\
     apt-get update &&\
     apt-get install -y git
 
