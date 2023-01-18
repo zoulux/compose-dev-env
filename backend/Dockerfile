@@ -6,7 +6,7 @@ ENV CGO_ENABLED=0
 RUN go build -o server .
 
 FROM build AS development
-RUN apt-get update \
+RUN cd /etc/apt sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list && apt-get update \
     && apt-get install -y git
 CMD ["go", "run", "main.go"]
 
