@@ -7,10 +7,7 @@ services:
       - db-password
     depends_on:
       - db
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+
   db:
     image: mariadb
     restart: always
@@ -28,20 +25,14 @@ services:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password
     expose:
       - 3306
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+
   proxy:
     build: proxy
     ports:
       - 8080:80
     depends_on:
       - backend
-    volumes:
-    - type: bind
-      source: /var/run/docker.sock
-      target: /var/run/docker.sock
+      
 volumes:
   db-data:
 secrets:
